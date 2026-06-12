@@ -7,3 +7,4 @@ promo/out/
 
 # embedded git repo (Remotion promo video) — fold in by removing promo/.git
 promo/
+.vercel
