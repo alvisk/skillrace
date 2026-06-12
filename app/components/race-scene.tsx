@@ -181,6 +181,7 @@ const Car = ({ spec, phase, raceTime }: { spec: CarSpec; phase: RacePhase; raceT
         distanceFactor={9}
         position={[0, 1.35 + (spec.lane % 2) * 0.8, 0]}
         wrapperClass="car-label"
+        zIndexRange={[5, 0]}
       >
         <div
           className={`car-tag${spec.winner ? " car-tag-winner" : ""}${finished ? " car-tag-finished" : ""}`}
