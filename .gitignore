@@ -1,0 +1,9 @@
+node_modules/
+bench/.skill-cache/
+.DS_Store
+.next/
+.playwright-mcp/
+promo/out/
+
+# embedded git repo (Remotion promo video) — fold in by removing promo/.git
+promo/

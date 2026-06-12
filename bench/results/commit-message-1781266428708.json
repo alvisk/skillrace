@@ -1,0 +1,318 @@
+{
+  "category": "commit-message",
+  "generatedAt": "2026-06-12T12:13:48.707Z",
+  "model": "claude-sonnet-4-6",
+  "trialsPerSkill": 3,
+  "summary": [
+    {
+      "skillId": "commit-message-generator",
+      "trials": 3,
+      "errors": 0,
+      "medianDurationS": 21.3,
+      "medianTurns": 3,
+      "medianCostUsd": 0.0826,
+      "medianOutputTokens": 946,
+      "triggerRate": 0,
+      "medianQuality": 1
+    },
+    {
+      "skillId": "commit-message",
+      "trials": 3,
+      "errors": 0,
+      "medianDurationS": 28.2,
+      "medianTurns": 5,
+      "medianCostUsd": 0.1006,
+      "medianOutputTokens": 1064,
+      "triggerRate": 1,
+      "medianQuality": 1
+    },
+    {
+      "skillId": "smart-commit",
+      "trials": 3,
+      "errors": 0,
+      "medianDurationS": 16.7,
+      "medianTurns": 3,
+      "medianCostUsd": 0.0736,
+      "medianOutputTokens": 556,
+      "triggerRate": 0,
+      "medianQuality": 0.75
+    },
+    {
+      "skillId": "baseline",
+      "trials": 3,
+      "errors": 0,
+      "medianDurationS": 20.3,
+      "medianTurns": 3,
+      "medianCostUsd": 0.0781,
+      "medianOutputTokens": 743,
+      "triggerRate": 0,
+      "medianQuality": 0.75
+    }
+  ],
+  "trials": [
+    {
+      "skillId": "smart-commit",
+      "trial": 1,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 15392,
+      "apiDurationMs": 15527,
+      "numTurns": 3,
+      "toolCalls": 2,
+      "skillInvoked": false,
+      "costUsd": 0.0727073,
+      "inputTokens": 5,
+      "outputTokens": 510,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP rate limiting and fix off-by-one in pagination\n\nIntroduces a sliding-window rate limiter (100 req/min per client IP) to\nprotect the API from abuse. Exceeding the limit returns 429 with a\n`retry-after: 60` header so clients know when to retry.\n\nAlso fixes an off-by-one bug in `paginate` where `PAGE_SIZE - 1` caused\neach page to return one fewer item than intended."
+    },
+    {
+      "skillId": "smart-commit",
+      "trial": 2,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 20401,
+      "apiDurationMs": 20874,
+      "numTurns": 3,
+      "toolCalls": 2,
+      "skillInvoked": false,
+      "costUsd": 0.0810341,
+      "inputTokens": 5,
+      "outputTokens": 890,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP rate limiting and fix pagination off-by-one\n\nIntroduce a sliding-window rate limiter (src/rate-limit.js) that allows\n100 requests per minute per client IP. The window is computed by\nfiltering stored timestamps older than 60 s, so the limit rolls\nnaturally rather than resetting hard on a fixed boundary.\n\nThe server now checks the limit before processing any request and\nreturns 429 Too Many Requests with a `retry-after: 60` header when the\nlimit is exceeded.\n\nAlso fix an off-by-one in paginate(): the slice upper bound was\n`start + PAGE_SIZE - 1`, which returned one fewer item than intended per\npage. Changed to `start + PAGE_SIZE`.\n\nREADME updated to document the rate-limit behaviour and response codes."
+    },
+    {
+      "skillId": "smart-commit",
+      "trial": 3,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 16716,
+      "apiDurationMs": 16980,
+      "numTurns": 3,
+      "toolCalls": 2,
+      "skillInvoked": false,
+      "costUsd": 0.07356529999999999,
+      "inputTokens": 5,
+      "outputTokens": 556,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP rate limiting and fix pagination off-by-one\n\nIntroduces a sliding-window rate limiter (100 req/min per client IP) in\nsrc/rate-limit.js and wires it into the request handler in src/server.js.\nRequests that exceed the limit receive a 429 response with a retry-after: 60\nheader.\n\nAlso fixes an off-by-one bug in paginate() where the slice upper bound was\nPAGE_SIZE - 1, causing each page to return one fewer item than intended.\n\nDocuments the rate-limiting behaviour in README.md."
+    },
+    {
+      "skillId": "commit-message",
+      "trial": 1,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 28211,
+      "apiDurationMs": 26941,
+      "numTurns": 5,
+      "toolCalls": 3,
+      "skillInvoked": true,
+      "costUsd": 0.10058149999999999,
+      "inputTokens": 7,
+      "outputTokens": 1064,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): add per-IP rate limiting and fix pagination off-by-one\n\nEnforce a sliding-window limit of 100 requests per minute per client\nIP. Exceeding the limit returns 429 Too Many Requests with a\n`retry-after: 60` header.\n\nAlso fixes an off-by-one in paginate() where the slice upper bound was\none element short, causing every page to return PAGE_SIZE - 1 items\ninstead of PAGE_SIZE."
+    },
+    {
+      "skillId": "commit-message",
+      "trial": 2,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 26409,
+      "apiDurationMs": 25725,
+      "numTurns": 5,
+      "toolCalls": 3,
+      "skillInvoked": true,
+      "costUsd": 0.0988121,
+      "inputTokens": 7,
+      "outputTokens": 978,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): add per-IP rate limiting and fix pagination off-by-one\n\nIntroduce a sliding-window rate limiter (100 req/min per client IP) in\na new src/rate-limit.js module. Requests that exceed the limit receive a\n429 Too Many Requests response with a retry-after: 60 header.\n\nAlso fixes an off-by-one bug in the paginate() helper where the slice\nupper bound was PAGE_SIZE - 1, causing each page to return one fewer\nitem than intended.\n\n- src/rate-limit.js: new sliding-window limiter using a Map of timestamps\n- src/server.js: apply rate limiter before routing; fix paginate() slice\n- README.md: document the 100 req/min limit and 429 behaviour"
+    },
+    {
+      "skillId": "commit-message",
+      "trial": 3,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 29809,
+      "apiDurationMs": 29555,
+      "numTurns": 5,
+      "toolCalls": 3,
+      "skillInvoked": true,
+      "costUsd": 0.102725,
+      "inputTokens": 7,
+      "outputTokens": 1176,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): add IP-based rate limiting with 429 responses\n\n- Sliding-window limiter (100 req/min per client IP) in src/rate-limit.js\n- Server returns 429 Too Many Requests with retry-after: 60 when limit exceeded\n- Fix off-by-one in paginate() that was returning PAGE_SIZE - 1 items per page\n- Document rate limiting behaviour in README"
+    },
+    {
+      "skillId": "commit-message-generator",
+      "trial": 1,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 21267,
+      "apiDurationMs": 21758,
+      "numTurns": 3,
+      "toolCalls": 2,
+      "skillInvoked": false,
+      "costUsd": 0.0812966,
+      "inputTokens": 5,
+      "outputTokens": 916,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat: add per-IP rate limiting and fix pagination off-by-one\n\nIntroduce a sliding-window rate limiter (100 req/min per client IP) in\nsrc/rate-limit.js. The server now returns 429 Too Many Requests with a\nretry-after: 60 header when a client exceeds the limit.\n\nAlso fix an off-by-one in paginate(): the slice upper bound was\n`start + PAGE_SIZE - 1`, which returned one fewer item than intended per\npage. Corrected to `start + PAGE_SIZE`.\n\nDocument the rate-limiting behaviour in README.md."
+    },
+    {
+      "skillId": "commit-message-generator",
+      "trial": 2,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 25142,
+      "apiDurationMs": 25831,
+      "numTurns": 4,
+      "toolCalls": 3,
+      "skillInvoked": false,
+      "costUsd": 0.08295739999999999,
+      "inputTokens": 5,
+      "outputTokens": 946,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat: add per-IP rate limiting and fix pagination off-by-one\n\nIntroduce a sliding-window rate limiter (100 requests per minute per\nclient IP) in src/rate-limit.js. The server now responds with 429 Too\nMany Requests and a retry-after: 60 header when the limit is exceeded.\n\nAlso fixes an off-by-one in paginate() where slicing with\n`start + PAGE_SIZE - 1` returned one fewer item per page than intended."
+    },
+    {
+      "skillId": "commit-message-generator",
+      "trial": 3,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 20390,
+      "apiDurationMs": 20434,
+      "numTurns": 3,
+      "toolCalls": 2,
+      "skillInvoked": false,
+      "costUsd": 0.0826397,
+      "inputTokens": 5,
+      "outputTokens": 963,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat: add per-IP rate limiting and fix pagination off-by-one\n\nIntroduce a sliding-window rate limiter (100 req/min per client IP).\nRequests that exceed the limit receive a 429 Too Many Requests response\nwith a `retry-after: 60` header. The limiter lives in its own module\n(src/rate-limit.js) and is wired into the request handler before any\nother processing.\n\nAlso fixes an off-by-one bug in paginate() where the slice upper bound\nwas PAGE_SIZE - 1 instead of PAGE_SIZE, causing every page to return\none fewer item than intended."
+    },
+    {
+      "skillId": "baseline",
+      "trial": 1,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 26740,
+      "apiDurationMs": 27101,
+      "numTurns": 3,
+      "toolCalls": 2,
+      "skillInvoked": false,
+      "costUsd": 0.0780647,
+      "inputTokens": 5,
+      "outputTokens": 800,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP rate limiting and fix pagination off-by-one\n\nIntroduce a sliding-window rate limiter (src/rate-limit.js) that allows\n100 requests per minute per client IP. Requests that exceed the limit\nreceive a 429 Too Many Requests response with a retry-after: 60 header.\n\nAlso fix an off-by-one bug in paginate(): the slice upper bound was\n`start + PAGE_SIZE - 1`, which returned one fewer item than intended per\npage. Corrected to `start + PAGE_SIZE`.\n\nDocument the rate-limiting behaviour in README.md."
+    },
+    {
+      "skillId": "baseline",
+      "trial": 2,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 20341,
+      "apiDurationMs": 22005,
+      "numTurns": 4,
+      "toolCalls": 3,
+      "skillInvoked": false,
+      "costUsd": 0.08378,
+      "inputTokens": 6,
+      "outputTokens": 669,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP rate limiting and fix pagination off-by-one\n\nIntroduce src/rate-limit.js, a sliding-window rate limiter that allows up\nto 100 requests per minute per client IP. Requests that exceed the limit\nnow receive a 429 Too Many Requests response with a retry-after: 60 header.\n\nAlso fixes a pre-existing off-by-one in paginate() where PAGE_SIZE - 1\nitems were returned instead of PAGE_SIZE (e.g. 9 instead of 10 per page).\n\nREADME updated to document the rate-limiting behaviour."
+    },
+    {
+      "skillId": "baseline",
+      "trial": 3,
+      "ok": true,
+      "model": "claude-sonnet-4-6",
+      "durationMs": 17961,
+      "apiDurationMs": 18836,
+      "numTurns": 3,
+      "toolCalls": 2,
+      "skillInvoked": false,
+      "costUsd": 0.0772139,
+      "inputTokens": 5,
+      "outputTokens": 743,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP rate limiting and fix pagination off-by-one\n\nIntroduce a sliding-window rate limiter (100 requests / 60 s per client\nIP) implemented in src/rate-limit.js. The server now returns 429 Too\nMany Requests with a `retry-after: 60` header before processing any\nfurther logic when the limit is exceeded.\n\nAlso fix an off-by-one bug in `paginate`: the slice upper bound was\n`start + PAGE_SIZE - 1`, which silently dropped the last item of every\npage. Changed to `start + PAGE_SIZE`.\n\nUpdate README to document the rate-limiting behaviour."
+    }
+  ]
+}

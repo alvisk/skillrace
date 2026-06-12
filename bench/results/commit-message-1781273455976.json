@@ -1,0 +1,28 @@
+{
+  "category": "commit-message",
+  "agent": "codex",
+  "generatedAt": "2026-06-12T14:10:55.975Z",
+  "model": "codex:default (chatgpt auth)",
+  "trialsPerSkill": 1,
+  "summary": [
+    {
+      "skillId": "baseline",
+      "trials": 1,
+      "errors": 1,
+      "medianDurationS": null,
+      "medianTurns": null,
+      "medianCostUsd": null,
+      "medianOutputTokens": null,
+      "triggerRate": null,
+      "medianQuality": null
+    }
+  ],
+  "trials": [
+    {
+      "ok": false,
+      "error": "\"no turn.completed event\"",
+      "skillId": "baseline",
+      "trial": 1
+    }
+  ]
+}

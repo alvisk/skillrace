@@ -1,0 +1,43 @@
+{
+  "category": "commit-message",
+  "generatedAt": "2026-06-12T12:05:49.059Z",
+  "model": "claude-fable-5",
+  "trialsPerSkill": 1,
+  "summary": [
+    {
+      "skillId": "baseline",
+      "trials": 1,
+      "errors": 0,
+      "medianDurationS": 28.3,
+      "medianTurns": 3,
+      "medianCostUsd": 0.8022,
+      "medianOutputTokens": 1122,
+      "triggerRate": 0,
+      "medianQuality": 0.75
+    }
+  ],
+  "trials": [
+    {
+      "skillId": "baseline",
+      "trial": 1,
+      "ok": true,
+      "model": "claude-fable-5",
+      "durationMs": 28312,
+      "apiDurationMs": 27212,
+      "numTurns": 3,
+      "toolCalls": 2,
+      "skillInvoked": false,
+      "costUsd": 0.802199,
+      "inputTokens": 8882,
+      "outputTokens": 1122,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP rate limiting and fix pagination off-by-one\n\nLimit requests to 100 per minute per client IP using an in-memory\nsliding window keyed by remote address. Requests over the limit get a\n429 response with a retry-after header. Document the behavior in the\nREADME.\n\nAlso fix paginate() to return a full page: slice() ended at\nstart + PAGE_SIZE - 1, so each page was short by one item."
+    }
+  ]
+}

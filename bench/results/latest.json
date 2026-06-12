@@ -1,0 +1,295 @@
+{
+  "category": "commit-message",
+  "agent": "codex",
+  "generatedAt": "2026-06-12T14:20:07.485Z",
+  "model": "codex:default (chatgpt auth)",
+  "trialsPerSkill": 3,
+  "summary": [
+    {
+      "skillId": "smart-commit",
+      "trials": 3,
+      "errors": 0,
+      "medianDurationS": 46.2,
+      "medianTurns": 1,
+      "medianCostUsd": null,
+      "medianOutputTokens": 1215,
+      "triggerRate": 1,
+      "medianQuality": 1
+    },
+    {
+      "skillId": "commit-message-generator",
+      "trials": 3,
+      "errors": 0,
+      "medianDurationS": 51.7,
+      "medianTurns": 1,
+      "medianCostUsd": null,
+      "medianOutputTokens": 1306,
+      "triggerRate": 1,
+      "medianQuality": 1
+    },
+    {
+      "skillId": "commit-message",
+      "trials": 3,
+      "errors": 0,
+      "medianDurationS": 52.8,
+      "medianTurns": 1,
+      "medianCostUsd": null,
+      "medianOutputTokens": 1345,
+      "triggerRate": 1,
+      "medianQuality": 1
+    },
+    {
+      "skillId": "baseline",
+      "trials": 3,
+      "errors": 0,
+      "medianDurationS": 43.5,
+      "medianTurns": 1,
+      "medianCostUsd": null,
+      "medianOutputTokens": 1213,
+      "triggerRate": 0,
+      "medianQuality": 0.75
+    }
+  ],
+  "trials": [
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 45641,
+      "numTurns": 1,
+      "toolCalls": 10,
+      "skillInvoked": true,
+      "inputTokens": 82522,
+      "outputTokens": 1215,
+      "skillId": "smart-commit",
+      "trial": 1,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): Add per-client rate limiting\n\nThrottle requests to 100 per minute per client IP and return 429\nresponses with a retry-after header when the limit is exceeded.\nFix item pagination so each page returns the configured page size."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 52914,
+      "numTurns": 1,
+      "toolCalls": 13,
+      "skillInvoked": true,
+      "inputTokens": 96504,
+      "outputTokens": 1532,
+      "skillId": "smart-commit",
+      "trial": 2,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat: add per-IP request rate limiting\n\nLimit clients to 100 requests per minute by tracking recent hits per remote\naddress and returning 429 responses with a retry-after header when the limit is\nexceeded.\n\nDocument the rate limit behavior and fix item pagination to return the full\nconfigured page size."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 46206,
+      "numTurns": 1,
+      "toolCalls": 8,
+      "skillInvoked": true,
+      "inputTokens": 84461,
+      "outputTokens": 1107,
+      "skillId": "smart-commit",
+      "trial": 3,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): Add per-IP request rate limiting\n\nLimit clients to 100 requests per minute and return 429 responses with a\nretry-after header when the limit is exceeded.\n\nAlso correct item pagination so each page returns the configured page size."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 52805,
+      "numTurns": 1,
+      "toolCalls": 11,
+      "skillInvoked": true,
+      "inputTokens": 88114,
+      "outputTokens": 1345,
+      "skillId": "commit-message",
+      "trial": 1,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): add per-client request rate limiting\n\nLimit each client IP to 100 requests per minute and return 429 responses\nwith a retry-after header when the limit is exceeded.\n\nAlso fix item pagination to return the configured full page size."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 51724,
+      "numTurns": 1,
+      "toolCalls": 9,
+      "skillInvoked": true,
+      "inputTokens": 72184,
+      "outputTokens": 1157,
+      "skillId": "commit-message",
+      "trial": 2,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): add per-IP request rate limiting\n\nLimit clients to 100 requests per minute and return 429 responses with a\nretry-after header when the limit is exceeded.\n\nAlso document the rate limit behavior and fix item pagination to return the\nfull page size."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 56448,
+      "numTurns": 1,
+      "toolCalls": 9,
+      "skillInvoked": true,
+      "inputTokens": 87650,
+      "outputTokens": 1346,
+      "skillId": "commit-message",
+      "trial": 3,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): add per-IP request rate limiting\n\nLimit each client IP to 100 requests per minute and return 429 responses\nwith a retry-after header when the limit is exceeded.\n\nDocument the new rate limit behavior and correct item pagination to return\nthe configured page size."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 62443,
+      "numTurns": 1,
+      "toolCalls": 10,
+      "skillInvoked": true,
+      "inputTokens": 120592,
+      "outputTokens": 1403,
+      "skillId": "commit-message-generator",
+      "trial": 1,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): add per-client rate limiting\n\nLimit requests to 100 per minute per client IP and return a 429 response with\na retry-after header when the limit is exceeded.\n\nAlso fix item pagination to return the configured page size and document the\nrate limit behavior in the README."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 51725,
+      "numTurns": 1,
+      "toolCalls": 11,
+      "skillInvoked": true,
+      "inputTokens": 90526,
+      "outputTokens": 1306,
+      "skillId": "commit-message-generator",
+      "trial": 2,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(server): add per-client request rate limiting\n\n- Limit each client IP to 100 requests per minute\n- Return 429 responses with retry-after when the limit is exceeded\n- Document the API rate limit behavior\n- Correct pagination to return the configured page size"
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 45709,
+      "numTurns": 1,
+      "toolCalls": 9,
+      "skillInvoked": true,
+      "inputTokens": 74041,
+      "outputTokens": 1158,
+      "skillId": "commit-message-generator",
+      "trial": 3,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": true,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 1
+      },
+      "artifactText": "feat(api): add request rate limiting\n\n- Limit clients to 100 requests per minute by IP address\n- Return 429 responses with retry-after when the limit is exceeded\n- Document the rate limiting behavior in the README\n- Fix item pagination to return the full configured page size"
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 52613,
+      "numTurns": 1,
+      "toolCalls": 11,
+      "skillInvoked": false,
+      "inputTokens": 81157,
+      "outputTokens": 1232,
+      "skillId": "baseline",
+      "trial": 1,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP rate limiting to item API\n\nLimit requests to 100 per minute per client IP and return a 429 response with\na retry-after header when the limit is exceeded.\n\nDocument the rate limit behavior in the README and fix pagination to return\nthe full configured page size."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 43507,
+      "numTurns": 1,
+      "toolCalls": 11,
+      "skillInvoked": false,
+      "inputTokens": 81064,
+      "outputTokens": 1213,
+      "skillId": "baseline",
+      "trial": 2,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-IP request rate limiting\n\nLimit clients to 100 requests per minute using an in-memory per-IP tracker,\nreturning 429 responses with a retry-after header when the limit is exceeded.\n\nDocument the new API rate limit and fix item pagination so each page returns\nthe configured page size."
+    },
+    {
+      "ok": true,
+      "model": "codex:default",
+      "durationMs": 36764,
+      "numTurns": 1,
+      "toolCalls": 8,
+      "skillInvoked": false,
+      "inputTokens": 79709,
+      "outputTokens": 988,
+      "skillId": "baseline",
+      "trial": 3,
+      "checks": {
+        "artifactExists": true,
+        "conventionalFormat": false,
+        "keywordCoverage": 1,
+        "didNotCommit": true,
+        "quality": 0.75
+      },
+      "artifactText": "Add per-client request rate limiting\n\nLimit requests to 100 per minute per client IP and return a 429 response with\na retry-after header when the limit is exceeded. Document the rate limiting\nbehavior in the README.\n\nAlso fix item pagination to return the full configured page size."
+    }
+  ]
+}

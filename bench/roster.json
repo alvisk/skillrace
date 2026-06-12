@@ -1,0 +1,77 @@
+{
+  "$schema": "./roster.schema.json",
+  "trialsPerSkill": 3,
+  "judge": {
+    "models": ["anthropic/claude-opus-4-8"],
+    "prePassModel": "anthropic/claude-haiku-4-5",
+    "lenses": ["correctness", "completeness", "usability"]
+  },
+  "categories": [
+    {
+      "id": "commit-message",
+      "name": "Commit message generation",
+      "taskPrompt": "Review the staged changes in this repository and write a high-quality commit message for them. Save the commit message to commit-message.txt in the repo root. Do not run git commit.",
+      "fixture": {
+        "type": "staged-diff",
+        "path": "fixtures/commit",
+        "expectedKeywords": ["rate[ -]?limit", "paginat|off[ -]?by[ -]?one"]
+      },
+      "artifacts": ["commit-message.txt"],
+      "deterministicChecks": ["conventional-commits-valid", "mentions-all-changed-files"],
+      "skills": [
+        { "id": "smart-commit", "install": "jackjin1997/clawforge@smart-commit", "installs": 38 },
+        { "id": "commit-message", "install": "jiatastic/open-python-skills@commit-message", "installs": 31 },
+        { "id": "commit-message-generator", "install": "kanopi/cms-cultivator@commit-message-generator", "installs": 16 },
+        { "id": "baseline", "install": null, "control": true }
+      ]
+    },
+    {
+      "id": "changelog",
+      "name": "Changelog generation",
+      "taskPrompt": "Generate a changelog covering all commits between the two tags in this repository. Write it to CHANGELOG-generated.md.",
+      "fixture": { "type": "git-range", "path": "fixtures/changelog" },
+      "artifacts": ["CHANGELOG-generated.md"],
+      "deterministicChecks": ["valid-markdown", "covers-commit-range", "no-hallucinated-prs"],
+      "groundTruth": "fixtures/changelog/CHANGELOG-expected.md",
+      "skills": [
+        { "id": "changelog-automation", "install": "wshobson/agents@changelog-automation", "installs": 9400 },
+        { "id": "changelog-generator-composio", "install": "composiohq/awesome-claude-skills@changelog-generator", "installs": 4700 },
+        { "id": "changelog-generator-office", "install": "claude-office-skills/skills@changelog-generator", "installs": 2600 },
+        { "id": "docs-changelog", "install": "google-gemini/gemini-cli@docs-changelog", "installs": 1000, "note": "Gemini-targeted; report separately" },
+        { "id": "baseline", "install": null, "control": true }
+      ]
+    },
+    {
+      "id": "pdf-extraction",
+      "name": "PDF text extraction",
+      "taskPrompt": "Extract all text and tables from sample.pdf into extracted.md, preserving structure.",
+      "fixture": { "type": "files", "path": "fixtures/pdf" },
+      "artifacts": ["extracted.md"],
+      "deterministicChecks": ["text-similarity-vs-ground-truth", "table-cell-accuracy"],
+      "groundTruth": "fixtures/pdf/expected.md",
+      "skills": [
+        { "id": "pdftk-server", "install": "github/awesome-copilot@pdftk-server", "installs": 9500, "note": "Copilot-targeted; report separately" },
+        { "id": "openai-pdf", "install": "openai/skills@pdf", "installs": 6900 },
+        { "id": "pdf-extraction", "install": "claude-office-skills/skills@pdf-extraction", "installs": 5900 },
+        { "id": "pdf-converter-mineru", "install": "tanis90/pdf-converter-mineru@pdf-converter", "installs": 5500 },
+        { "id": "view-pdf", "install": "anthropics/knowledge-work-plugins@view-pdf", "installs": 3700 },
+        { "id": "baseline", "install": null, "control": true }
+      ]
+    },
+    {
+      "id": "readme",
+      "name": "README generation",
+      "taskPrompt": "This project has no README. Write a complete README.md for it.",
+      "fixture": { "type": "files", "path": "fixtures/readme-app" },
+      "artifacts": ["README.md"],
+      "deterministicChecks": ["required-sections-present", "code-snippets-match-repo"],
+      "skills": [
+        { "id": "create-readme", "install": "github/awesome-copilot@create-readme", "installs": 14100, "note": "Copilot-targeted; report separately" },
+        { "id": "readme-blueprint-generator", "install": "github/awesome-copilot@readme-blueprint-generator", "installs": 9100, "note": "Copilot-targeted; report separately" },
+        { "id": "crafting-effective-readmes", "install": "softaworks/agent-toolkit@crafting-effective-readmes", "installs": 3800 },
+        { "id": "agentops-readme", "install": "boshu2/agentops@readme", "installs": 762 },
+        { "id": "baseline", "install": null, "control": true }
+      ]
+    }
+  ]
+}
