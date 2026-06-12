@@ -244,7 +244,8 @@ const runCodex = async (
   model: string | undefined,
   codexHome: string,
 ): Promise<RunOutcome> => {
-  const args = ["exec", "--json", "--sandbox", "workspace-write"];
+  // Fresh CODEX_HOME has no trust store; trial dirs are throwaway git repos.
+  const args = ["exec", "--json", "--sandbox", "workspace-write", "--skip-git-repo-check"];
   if (model) args.push("-m", model);
   args.push(prompt);
   const t0 = performance.now();

@@ -6,6 +6,6 @@ export const EmptyState = ({ category }: { category: RosterCategory }) => (
     <p>
       <strong>{category.name}</strong> hasn&apos;t been raced yet. Run the bench, then refresh:
     </p>
-    <code>node bench/run.ts {category.id} --model claude-sonnet-4-6</code>
+    <code>node bench/run.ts {category.id} --agent codex</code>
   </div>
 );
