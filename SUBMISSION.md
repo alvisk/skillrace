@@ -10,10 +10,30 @@ SkillRace
 
 A benchmark that races agent skills head-to-head on a 3D neon highway — speed × quality, with receipts.
 
+## Form fields (paste-ready)
+
+- **Project name**: SkillRace
+- **Description**: skills.sh ranks agent skills by installs — nobody measures if a
+  skill is actually fast or good. SkillRace installs competing skills and races them
+  headlessly on OpenAI Codex (`codex exec --json`, hermetic fresh `CODEX_HOME`) against
+  identical fixtures plus a no-skill control, scoring real telemetry (wall-clock,
+  tokens, turns, trigger rate) and deterministic quality checks. The leaderboard is a
+  3D synthwave race where each car's speed is its real median benchmark time. Headline
+  finding: rankings flip between host agents — a skill that was pure overhead on Claude
+  Code was the top performer on Codex. It's for skill authors and agent users, and is
+  itself published as a skill: `npx skills add alvisk/skillrace`.
+- **Public Deployed URL**: https://skillrace.vercel.app
+- **GitHub**: https://github.com/alvisk/skillrace
+- **YouTube**: upload `promo/out/skillrace-promo.mp4`, then paste the link
+- **Technologies used**: Codex, Vercel, Next.js, react-three-fiber, Remotion,
+  skills.sh CLI, Claude Code, TypeScript
+- **Team members**: Alvis Kalarikkan
+
 ## Links
 
 - Repo: https://github.com/alvisk/skillrace
-- Demo: (vercel prod URL — pending deploy)
+- Demo: https://skillrace.vercel.app
+- Registry: https://skills.sh/alvisk/skillrace/skill-race
 
 ## Description
 
